@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fanbox/page/home.dart';
-import 'package:fanbox/page/popular.dart';
+import 'package:fanbox/page/recommend.dart';
 import 'package:fanbox/page/my.dart';
 
 class MainActivity extends StatefulWidget {
@@ -21,7 +21,7 @@ class MainActivityState extends State<MainActivity> {
 
   final pages = [
     const HomePage(),
-    const PopularPage(),
+    const RecommendPage(),
     const MyPage()
   ];
 

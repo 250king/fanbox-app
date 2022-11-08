@@ -7,13 +7,12 @@ import 'package:fanbox/activity/main.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences.getInstance().then((storage) {
-    final token = storage.getString("token");
+    final token = storage.getString("access_token");
     if (token == null) {
       runApp(const App(login: false));
     }
     else {
-      final client = Dio();
-      client.get("https://api.fanbox.cc/user.getTwitterAccountInfo", options: Options(
+      Dio().get("https://api.fanbox.cc/user.getTwitterAccountInfo", options: Options(
         sendTimeout: 10000,
         headers: {
           "Cookie": "FANBOXSESSID=$token",
