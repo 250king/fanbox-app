@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fanbox/component/model/certificate.dart';
 import 'package:fanbox/page/home.dart';
 import 'package:fanbox/page/recommend.dart';
 import 'package:fanbox/page/my.dart';
 
 class MainActivity extends StatefulWidget {
-  const MainActivity({super.key});
+  const MainActivity({super.key, required this.certificate});
+
+  final Certificate certificate;
 
   @override
   State<MainActivity> createState() => MainActivityState();

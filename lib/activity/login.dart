@@ -1,20 +1,22 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:fanbox/component/model/certificate.dart';
+import 'package:fanbox/activity/main.dart';
 import 'package:html/parser.dart';
+import 'package:dio/dio.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginActivity extends StatefulWidget {
+  const LoginActivity({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return LoginPageState();
+    return LoginActivityState();
   }
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginActivityState extends State<LoginActivity> {
   double loading = 0.0;
 
   bool loaded = false;
@@ -76,9 +78,14 @@ class LoginPageState extends State<LoginPage> {
                   var result = jsonDecode(text!);
                   storage.setString("access_token", cookie?.value).then((value) {
                     storage.setString("csrf_token", result["csrfToken"]).then((value) {
-                      Navigator.pushNamedAndRemoveUntil(context, "/logon", (route) => false);
+                      final certificate = Certificate(cookie?.value, result["csrfToken"]);
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+                        return MainActivity(certificate: certificate);
+                      }), (route) => false);
                     });
                   });
+                }).catchError((error) {
+                  Navigator.pop(context);
                 });
               });
             });

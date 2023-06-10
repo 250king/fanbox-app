@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:fanbox/activity/welcome.dart';
 import 'package:fanbox/component/client.dart';
 import 'package:html/parser.dart';
 
@@ -48,9 +49,6 @@ class MyPageState extends State<MyPage> {
           setState(() {
             loading = false;
           });
-        }
-        else {
-          Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
         }
       });
     });
@@ -98,7 +96,12 @@ class MyPageState extends State<MyPage> {
               item("通知设定", () { }),
               item("退出登录", () {
                 client.getUri(Uri.parse("https://www.fanbox.cc/logout"));
-                Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+                SharedPreferences.getInstance().then((storage) {
+                  storage.clear();
+                });
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) {
+                  return const WelcomeActivity();
+                }), (route) => false);
               }),
               const Divider(),
               item("最新消息", () { }),

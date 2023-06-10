@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:fanbox/component/card/recommend.dart';
-import 'package:fanbox/component/nothing.dart';
+import 'package:fanbox/component/list/nothing.dart';
 import 'package:fanbox/component/client.dart';
 
 class RecommendPage extends StatefulWidget {

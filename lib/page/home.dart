@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:fanbox/component/client.dart';
-import 'package:fanbox/component/nothing.dart';
-import 'package:fanbox/component/more.dart';
+import 'package:fanbox/component/list/nothing.dart';
+import 'package:fanbox/component/list/more.dart';
 import 'package:fanbox/component/card/home.dart';
 
 class HomePage extends StatefulWidget {

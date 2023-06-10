@@ -29,7 +29,7 @@ class WelcomeActivityState extends State<WelcomeActivity> {
                 setButton();
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return const LoginPage();
+                    return const LoginActivity();
                   })
                 ).then((callback) {
                   if (callback == "NETWORK") {
